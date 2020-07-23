@@ -14,7 +14,7 @@ export const criminalList = () => {
         })
 
         contentTarget.innerHTML = `
-          <div class="container">
+          <div class="criminal-container">
             ${criminalHTMLRep}
           </div>
         `

@@ -1,12 +1,12 @@
 export const criminalHTML = (criminalObj) => {
   return `
-    <article>
+    <article class="indv-criminal">
       <h3>${criminalObj.name}</h3>
 
-      <p>Age: ${criminalObj.age}</p>
-      <p>Crime: ${criminalObj.conviction}</p>
-      <p>Term Start: ${criminalObj["incarceration"].start}</p>
-      <p>Term End: ${criminalObj["incarceration"].end}</p>
+      <p>Age: ${criminalObj.age}<br>
+        Crime: ${criminalObj.conviction}<br>
+        Term Start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}<br>
+        Term End: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</p>
     </article>
   `
 }
