@@ -23,7 +23,6 @@ eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
   )
 
   render(filteredCriminals)
-  criminalList()
 })
 
 const render = (arrayOfCriminals) => {
