@@ -4,8 +4,8 @@ export const useConvictions = () => convictions.slice()
 
 export const getConvictions = () => {
   return fetch("https://criminals.glassdale.us/crimes")
-      .then(response => response.json())
-      .then(crimeArray => {
-        convictions = crimeArray
-      })
+    .then(res => res.json())
+    .then(crimeArr => {
+      convictions = crimeArr
+    })
 }
