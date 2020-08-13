@@ -1,11 +1,14 @@
-import { useCriminals, getCriminals } from './criminalsDataProvider.js'
-import { criminalHTML } from './criminalHTML.js'
-import { useConvictions } from "../convictions/ConvictionProvider.js"
+import { getCriminals, useCriminals } from './criminalDataProvider.js'
+import { crimHTMLRep } from "./criminal.js";
+import { useConvictions } from '../convictions/ConvictionProvider.js';
+import { renderAlibiBox } from "../Alibi/AlibiList.js";
 
 const contentTarget = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
 
+// Click event to filter list of criminals down to only ones who've commited the selected crime
 eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
+
   const crimeThatWasSelected = crimeSelectedEvent.detail.crimeId
 
   const arrayOfCrimes = useConvictions()
@@ -14,6 +17,7 @@ eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
       return parseInt(crimeThatWasSelected) === crime.id
     }
   )
+
   const allCriminals = useCriminals()
 
   const filteredCriminals = allCriminals.filter(
@@ -23,27 +27,54 @@ eventHub.addEventListener("crimeSelected", (crimeSelectedEvent) => {
   )
 
   render(filteredCriminals)
+
 })
 
-const render = (arrayOfCriminals) => {
-  let criminalHTMLRep = ""
+// Click event to filter the list of criminals down based on the arresting officer
+eventHub.addEventListener("officerSelected", (event) => {
+  
+  const selectedOfficer = event.detail.officer 
+  
+  const allCriminals = useCriminals()
+  const arrestingOfficerFilter = allCriminals.filter(
+    (currentCriminalObject) => {
+      if (currentCriminalObject.arrestingOfficer === selectedOfficer) {
+        return true
+      }
+    }
+  )
+    
+    render(arrestingOfficerFilter)
+})
 
-  arrayOfCriminals.forEach(criminal => {
-    criminalHTMLRep += criminalHTML(criminal)
+
+const render = (criminalArr) => {
+  
+  let crimHTMLString = ""
+
+  criminalArr.forEach(criminal => {
+    crimHTMLString += crimHTMLRep(criminal)
   })
 
   contentTarget.innerHTML = `
-  <h2>Glassdale Convicted Criminals</h2>
-  <article class="criminalList">
-      ${ criminalHTMLRep } 
+  <h2>Criminals</h2>
+  <div class="criminalList" >
+  ${crimHTMLString}
+  </div>
+  ${renderAlibiBox()}
   `
+
 }
 
-export const criminalList = () => {
 
-  getCriminals()
+export const CriminalList = () => {
+    getCriminals()
       .then(() => {
-        const criminalArray = useCriminals()
-        render(criminalArray)
-      })
-    }
+        const criminals = useCriminals()
+        render(criminals)
+    
+      
+
+      
+  })
+}

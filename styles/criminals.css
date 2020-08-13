@@ -1,0 +1,17 @@
+.criminalList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.criminal {
+  border: .15rem solid black;
+  border-radius: 1rem;
+  margin: 2rem;
+  padding: .5rem;
+  flex-basis: 20%;
+}
+.alibiContainer {
+  border: 2px solid black;
+  padding: .5rem;
+  margin: .5rem;
+}

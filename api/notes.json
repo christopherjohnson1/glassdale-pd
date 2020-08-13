@@ -1,0 +1,28 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "Getting closer to figuring out who commited murder",
+      "timestamp": "06/04/2001",
+      "author": "Detective Goldenrod",
+      "content": "I think I might know who did it, but still waiting on the results to come back from the lab",
+      "criminalId": 5
+    },
+    {
+      "title": "Results back from lab",
+      "author": "Detective Goldenrod",
+      "content": "Ballistics report back inconclusive, back to square one",
+      "timestamp": "06/12/2001",
+      "id": 2,
+      "criminalId": 5
+    },
+    {
+      "title": "Test",
+      "author": "Test",
+      "content": "Current Test",
+      "criminalId": 8,
+      "timestamp": 1597350059476,
+      "id": 3
+    }
+  ]
+}
