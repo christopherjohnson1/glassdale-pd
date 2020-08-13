@@ -4,7 +4,7 @@
   justify-content: space-evenly;
 }
 .criminal {
-  border: .25rem dotted black;
+  border: .15rem solid black;
   border-radius: 1rem;
   margin: 2rem;
   padding: .5rem;
