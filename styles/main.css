@@ -12,3 +12,21 @@
 .noteListContainer {
   flex: 1;
 }
+
+.filters {
+    display: flex;
+}
+
+.filters__officer {
+    background-color: #4f5d75;
+    flex: 6;
+    padding: 1rem;
+    width: 100%;
+}
+
+.filters__crime {
+    background-color: #4f5d75;
+    flex: 6;
+    padding: 1rem;
+    width: 100%;
+}
