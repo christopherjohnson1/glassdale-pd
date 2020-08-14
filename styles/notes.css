@@ -3,16 +3,17 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  background-color: #ef8354;
 }
 .note {
-  background-color: slategray;
-  border: solid 2px blue;
+  background-color: #ef8354;
   border-radius: .5rem;
   padding: .5rem;
   margin: 1rem 0;
 }
 .noteListContainer {
   margin: 2rem;
+  background-color: #2d3142;
 }
 
 .fields {
