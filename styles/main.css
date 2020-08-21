@@ -22,6 +22,7 @@
     flex: 6;
     padding: 1rem;
     width: 100%;
+    border: whitesmoke 1px solid;
 }
 
 .filters__crime {
@@ -29,4 +30,5 @@
     flex: 6;
     padding: 1rem;
     width: 100%;
+    border: whitesmoke 1px solid;
 }

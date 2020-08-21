@@ -1,9 +1,10 @@
 .noteFormContainer {
-  width: 50%;
-  margin: auto;
+  width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: column;
   background-color: #ef8354;
+  padding-bottom: 12.5px;
 }
 .note {
   background-color: #ef8354;
@@ -12,11 +13,12 @@
   margin: 1rem 0;
 }
 .noteListContainer {
-  margin: 2rem;
   background-color: #2d3142;
+  border: whitesmoke 1px solid;
 }
 
 .fields {
   border-radius: .25rem;
-  margin: .25rem;
+  margin: .325rem;
+  width: 33%;
 }
