@@ -43,10 +43,10 @@ eventHub.addEventListener("click", clickEvent => {
 const render = (criminals) => {
   contentTarget.innerHTML = `
     <div class="noteFormContainer">
-      <h3>Enter a note below</h3>
+      <h3 class="note-title">Enter a note below</h3>
       <input type="text" class="fields" id="note--title" placeholder="Title" />
       <input type="text" class="fields" id="note--author" placeholder="Author" />
-      <select id="note--criminal">
+      <select class="fields" id="note--criminal">
         <option value="0">Select a criminal...</option>
         ${
             criminals.map(
