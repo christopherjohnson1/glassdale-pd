@@ -1,7 +1,9 @@
 import { getCriminals, useCriminals } from './criminalDataProvider.js'
-import { crimHTMLRep } from "./criminal.js";
-import { useConvictions } from '../convictions/ConvictionProvider.js';
-import { renderAlibiBox } from "../Alibi/AlibiList.js";
+import { crimHTMLRep } from "./criminal.js"
+import { useConvictions } from '../convictions/ConvictionProvider.js'
+import { renderAlibiBox } from "../Alibi/AlibiList.js"
+import { getCriminalFacilities, useCriminalFacilities } from '../facility/CriminalFacilityProvider.js'
+import { useFacilities, getFacilities } from '../facility/FacilityProvider.js'
 
 const contentTarget = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
@@ -48,30 +50,35 @@ eventHub.addEventListener("officerSelected", (event) => {
 })
 
 
-const render = (criminalArr) => {
-  
-  let crimHTMLString = ""
+const render = (criminalsToRender, allFacilities, allRelationships) => {
+    // Iterate all criminals
+    contentTarget.innerHTML = criminalsToRender.map(
+        (criminalObject) => {
+            // Filter all relationships to get only ones for this criminal
+            const facilityRelationshipsForThisCriminal = allRelationships.filter(cf => cf.criminalId === criminalObject.id)
 
-  criminalArr.forEach(criminal => {
-    crimHTMLString += crimHTMLRep(criminal)
-  })
+            // Convert the relationships to facilities with .map()
+            const facilities = facilityRelationshipsForThisCriminal.map(cf => {
+                const matchingFacilityObject = allFacilities.find(facility => facility.id === cf.facilityId)
+                return matchingFacilityObject
+            })
 
-  contentTarget.innerHTML = `
-  <h2>Criminals</h2>
-  <div class="criminalList" >
-  ${crimHTMLString}
-  </div>
-  ${renderAlibiBox()}
-  `
-
+            // Must pass the matching facilities to the Criminal component
+            return crimHTMLRep(criminalObject, facilities)
+        }
+    ).join("")
 }
 
 
 export const CriminalList = () => {
     getCriminals()
-      .then(() => {
-        const criminals = useCriminals()
-        render(criminals)
+        .then(getCriminalFacilities)
+        .then(getFacilities)
+        .then(() => {
+            const facilities = useFacilities()
+            const crimFac = useCriminalFacilities()
+            const criminals = useCriminals()
+            render(criminals, facilities, crimFac)
     
       
 
